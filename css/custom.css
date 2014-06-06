@@ -1,0 +1,80 @@
+.dropdown-submenu{
+    position:relative;
+}
+
+.dropdown-submenu > .dropdown-menu
+{
+    top:0;
+    left:100%;
+    margin-top:-6px;
+    margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;
+    -moz-border-radius:0 6px 6px 6px;
+    border-radius:0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu{
+    display:block;
+}
+
+.dropdown-submenu > a:after{
+    display:block;
+    content:" ";
+    float:right;
+    width:0;
+    height:0;
+    border-color:transparent;
+    border-style:solid;
+    border-width:5px 0 5px 5px;
+    border-left-color:#cccccc;
+    margin-top:5px;
+    margin-right:-10px;
+}
+
+.dropdown-submenu:hover > a:after{
+    border-left-color:#ffffff;
+}
+
+.dropdown-submenu .pull-left{
+    float:none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu{
+    left:-100%;
+    margin-left:10px;
+    -webkit-border-radius:6px 0 6px 6px;
+    -moz-border-radius:6px 0 6px 6px;
+    border-radius:6px 0 6px 6px;
+}
+
+/*Anamated sorting of tables*/
+
+table.tableSorter th div.sortArrow {
+    width: 11px;
+    height: 10px;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: 2px;
+    position: relative;
+}
+
+table.tableSorter th div.sortArrow div.sortArrowAscending,
+table.tableSorter th div.sortArrow div.sortArrowDescending {
+    position: absolute;
+    display: none;
+    width: 16px;
+    height: 15px;
+}
+
+table.tableSorter th div.sortArrow div.sortArrowAscending {
+    background: url('../images/icon_down.png');
+}
+
+table.tableSorter th div.sortArrow div.sortArrowDescending {
+    background: url('../images/icon_up.png') no-repeat;
+}
+
+.tableSorter tr:nth-child(even) td {background: #CCC}
+.tableSorter tr:nth-child(odd) td {background: #FFF}
+
+/*End of Animated sorting of tables*/

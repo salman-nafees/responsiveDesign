@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example of Twitter Bootstrap 3 Accordion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/rwd-table.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/slidebars.min.css">
+    <link rel="stylesheet" href="css/sideBar-Theme.css">
+
+    <!-- Custom Scroll Bar CSS-->
+    <link rel="stylesheet" href="css/jquery.fs.scroller.css">
+
+    <!-- Pushy CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="css/pushy.css">
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/jquery-ui.widget.min.js" type="text/javascript"></script>
+    <script src="js/rwd-table.js" type="text/javascript"></script>
+    <script src="js/respond.js" type="text/javascript"></script>
+    <script src="js/slidebars.min.js" type="text/javascript"></script>
+
+    <!-- Pushy JS -->
+    <script src="js/modernizr.custom.71422.js"></script>
+    <script src="js/pushy.min.js"></script>
+
+    <!--Animated Sortable Table-->
+    <script src="js/tsort.min.js"></script>
+
+    <!-- Custom Scroll Bar JS-->
+    <script src="js/jquery.fs.scroller.js"></script>
+
+    <style type="text/css">
+        tbody tr.even th, tbody tr.even td {
+            background-color: #ccc;
+            -webkit-transition: all 800ms ease;
+            -moz-transition: all 800ms ease;
+            -ms-transition: all 800ms ease;
+            -o-transition: all 800ms ease;
+            transition: all 800ms ease;
+        }
+        tbody tr.even:hover th, tbody tr.even:hover td {
+            background-color: skyblue;
+            cursor: pointer;
+            -webkit-transition: all 800ms ease;
+            -moz-transition: all 800ms ease;
+            -ms-transition: all 800ms ease;
+            -o-transition: all 800ms ease;
+            transition: all 800ms ease;
+        }
+        tbody tr.odd th, tbody tr.odd td {
+            background-color: #FFF;
+            -webkit-transition: all 800ms ease;
+            -moz-transition: all 800ms ease;
+            -ms-transition: all 800ms ease;
+            -o-transition: all 800ms ease;
+            transition: all 800ms ease;
+        }
+        tbody tr.odd:hover th, tbody tr.odd:hover td {
+            background-color: skyblue;
+            cursor: pointer;
+            -webkit-transition: all 800ms ease;
+            -moz-transition: all 800ms ease;
+            -ms-transition: all 800ms ease;
+            -o-transition: all 800ms ease;
+            transition: all 800ms ease;
+        }
+        .odd
+        {
+            background-color: #FFF;
+        }
+        .even {
+            background-color: #ccc;
+        }
+        .active {
+            background-color: Blue;
+        }
+        .active1 .child {
+            display: block !important;
+        }
+        .parent .child {
+            display: none;
+        }
+        .slideup, .slidedown {
+            max-height: 0px;
+            overflow-y: hidden;
+            -webkit-transition: max-height 0.8s ease-in-out;
+            -moz-transition: max-height 0.8s ease-in-out;
+            -o-transition: max-height 0.8s ease-in-out;
+            transition: max-height 0.8s ease-in-out;
+        }
+        /*.parent:hover .slidedown {*/
+            /*max-height: 40px;*/
+        /*}*/
+        /*.parent:hover .slideup {*/
+            /*max-height: 40px !important;*/
+        /*}*/
+
+        /* one item */
+        .parent:hover .slidedown, li:first-child:nth-last-child(1) {
+            max-height: 40px;
+        }
+
+        /* two items */
+        .parent:hover .slidedown, li:first-child:nth-last-child(2),
+        li:first-child:nth-last-child(2) ~ li {
+            max-height: 80px;
+        }
+        /* three items */
+        .parent:hover .slidedown, li:first-child:nth-last-child(3),
+        li:first-child:nth-last-child(3) ~ li {
+            max-height: 120px;
+        }
+        /* four items */
+        .parent:hover .slidedown, li:first-child:nth-last-child(4),
+        li:first-child:nth-last-child(4) ~ li {
+            max-height: 160px;
+        }
+        /* five items */
+        .parent:hover .slidedown, li:first-child:nth-last-child(5),
+        li:first-child:nth-last-child(5) ~ li {
+            max-height: 200px;
+        }
+        /* six items */
+        .parent:hover .slidedown, li:first-child:nth-last-child(6),
+        li:first-child:nth-last-child(6) ~ li {
+            max-height: 260px;
+        }
+
+        .scroller-track {
+            background-color: #333332;
+        }
+
+        /*::-webkit-scrollbar {*/
+            /*width: 12px;*/
+        /*}*/
+
+        /*::-webkit-scrollbar-track {*/
+            /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);*/
+            /*border-radius: 10px;*/
+        /*}*/
+
+        /*::-webkit-scrollbar-thumb {*/
+            /*border-radius: 10px;*/
+            /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);*/
+        /*}*/
+    </style>
+</head>
+<body>
+
+    <!-- Pushy Menu -->
+    <nav class="pushy pushy-left scrollbar">
+        <ul>
+            <li class="parent"><a href="#">Item 1</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 1.1</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 2</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.2</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 3</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.3</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 4</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.4</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 5</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.5</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 6</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.5</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.6</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent" style="background-color: #A9A9A9;"><a href="#"></a></li>
+
+            <li class="parent"><a href="#">Item 1</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 1.1</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 2</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.2</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 3</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.3</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 4</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.4</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 5</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.5</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 6</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.5</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.6</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 7</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 7.1</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="parent"><a href="#">Item 1</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 1.1</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 2</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 2.2</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 3</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 3.3</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 4</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 4.4</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 5</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 5.5</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 6</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.1</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.2</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.3</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.4</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.5</a>
+                    </li>
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 6.6</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="parent"><a href="#">Item 7</a>
+                <ul class="slidedown">
+                    <li>
+                        <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Item 7.1</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="container">
+    <div class="menu-btn"  id="menuDiv">&#9776;</div>
+        <div>
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Brand</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active sb-toggle-left"><a href="#">Link</a></li>
+                        <li class="sb-toggle-right"><a href="#">Link</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Multi Level <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Level 1</a></li>
+                                <li class="dropdown-submenu"> <a tabindex="-1" href="#">More options</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a tabindex="-1" href="#">Level 2</a>
+                                        </li>
+                                        <li class="dropdown-submenu"> <a href="#">More..</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Level 3</a>
+                                                </li>
+                                                <li><a href="#">Level 3</a>
+                                                </li>
+                                                <li class="dropdown-submenu"> <a href="#">More..</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#">Level 4</a>
+                                                        </li>
+                                                        <li><a href="#">Level 4</a>
+                                                        </li>
+                                                        <li class="dropdown-submenu"> <a href="#">More..</a>
+                                                            <ul class="dropdown-menu">
+                                                                <li><a href="#">Level 5</a>
+                                                                </li>
+                                                                <li><a href="#">Level 5</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Level 2</a>
+                                        </li>
+                                        <li><a href="#">Level 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Level 1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </nav>
+        </div>
+        <div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. Responsive HTML Table</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="docs">
+                            </div>
+
+
+                            <div class="table-wrapper">
+
+                                <table cellspacing="0" id="tech-companies">
+                                    <thead>
+                                    <tr class="odd">
+                                        <th class="persist essential">Company</th>
+                                        <th class="essential">Last Trade</th>
+                                        <th class="optional">Trade Time</th>
+                                        <th class="essential">Change</th>
+                                        <th class="optional">Prev Close</th>
+                                        <th class="optional">Open</th>
+                                        <th>Bid</th>
+                                        <th>Ask</th>
+                                        <th>1y Target Est</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="even">
+                                        <th>GOOG <span class="co-name">Google Inc.</span></th>
+                                        <td>597.74</td>
+                                        <td>12:12PM</td>
+                                        <td>14.81 (2.54%)</td>
+                                        <td>582.93</td>
+                                        <td>597.95</td>
+                                        <td>597.73 x 100</td>
+                                        <td>597.91 x 300</td>
+                                        <td>731.10</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <th>AAPL <span class="co-name">Apple Inc.</span></th>
+                                        <td>378.94</td>
+                                        <td>12:22PM</td>
+                                        <td>5.74 (1.54%)</td>
+                                        <td>373.20</td>
+                                        <td>381.02</td>
+                                        <td>378.92 x 300</td>
+                                        <td>378.99 x 100</td>
+                                        <td>505.94</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <th>AMZN <span class="co-name">Amazon.com Inc.</span></th>
+                                        <td>191.55</td>
+                                        <td>12:23PM</td>
+                                        <td>3.16 (1.68%)</td>
+                                        <td>188.39</td>
+                                        <td>194.99</td>
+                                        <td>191.52 x 300</td>
+                                        <td>191.58 x 100</td>
+                                        <td>240.32</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <th>ORCL <span class="co-name">Oracle Corporation</span></th>
+                                        <td>31.15</td>
+                                        <td>12:44PM</td>
+                                        <td>1.41 (4.72%)</td>
+                                        <td>29.74</td>
+                                        <td>30.67</td>
+                                        <td>31.14 x 6500</td>
+                                        <td>31.15 x 3200</td>
+                                        <td>36.11</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <th>MSFT <span class="co-name">Microsoft Corporation</span></th>
+                                        <td>25.50</td>
+                                        <td>12:27PM</td>
+                                        <td>0.66 (2.67%)</td>
+                                        <td>24.84</td>
+                                        <td>25.37</td>
+                                        <td>25.50 x 71100</td>
+                                        <td>25.51 x 17800</td>
+                                        <td>31.50</td>
+                                    </tr>
+                                    <tr class="odd">
+                                        <th>CSCO <span class="co-name">Cisco Systems, Inc.</span></th>
+                                        <td>18.65</td>
+                                        <td>12:45PM</td>
+                                        <td>0.97 (5.49%)</td>
+                                        <td>17.68</td>
+                                        <td>18.23</td>
+                                        <td>18.65 x 10300</td>
+                                        <td>18.66 x 24000</td>
+                                        <td>21.12</td>
+                                    </tr>
+                                    <tr class="even">
+                                        <th>YHOO <span class="co-name">Yahoo! Inc.</span></th>
+                                        <td>15.81</td>
+                                        <td>12:25PM</td>
+                                        <td>0.11 (0.67%)</td>
+                                        <td>15.70</td>
+                                        <td>15.94</td>
+                                        <td>15.79 x 6100</td>
+                                        <td>15.80 x 17000</td>
+                                        <td>18.16</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. Responsive Panel</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <div class="table-wrapper">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. What is CSS?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="tableSorter">
+                    <tr>
+                        <th>Year</th>
+                        <th>Film</th>
+                        <th>Credit Role</th>
+                        <th>Grossed</th>
+                        <th>IMDB</th>
+                        <th>Rotten Tomatoes</th>
+                    </tr>
+                    <tr>
+                        <td>1977</td>
+                        <td>Annie Hall</td>
+                        <td>Alvy Singer</td>
+                        <td>$135,852,600</td>
+                        <td>8.2</td>
+                        <td>98%</td>
+                    </tr>
+                    <tr>
+                        <td>2006</td>
+                        <td>Scoop</td>
+                        <td>Sid Waterman</td>
+                        <td>$12,727,300</td>
+                        <td>6.7</td>
+                        <td>39%</td>
+                    </tr>
+                    <tr>
+                        <td>1973</td>
+                        <td>Sleeper</td>
+                        <td>Miles Monroe</td>
+                        <td>$82,084,900</td>
+                        <td>7.3</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>1979</td>
+                        <td>Manhattan</td>
+                        <td>Isaac Davis</td>
+                        <td>$126,047,200</td>
+                        <td>8.0</td>
+                        <td>98%</td>
+                    </tr>
+                    <tr>
+                        <td>1975</td>
+                        <td>Love And Death</td>
+                        <td>Boris Grushenko</td>
+                        <td>$77,746,400</td>
+                        <td>7.7</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>2011</td>
+                        <td>Midnight in Paris</td>
+                        <td></td>
+                        <td>$56,257,700</td>
+                        <td>7.8</td>
+                        <td>93%</td>
+                    </tr>
+                    <tr>
+                        <td>1997</td>
+                        <td>Deconstructing Harry</td>
+                        <td>Harry Block</td>
+                        <td>$18,046,900</td>
+                        <td>7.3</td>
+                        <td>71%</td>
+                    </tr>
+                    <tr>
+                        <td>1991</td>
+                        <td>Shadows and Fog</td>
+                        <td>Kleinman</td>
+                        <td></td>
+                        <td>6.6</td>
+                        <td>55%</td>
+                    </tr>
+                    <tr>
+                        <td>2009</td>
+                        <td>Whatever Works</td>
+                        <td></td>
+                        <td>$5,633,400</td>
+                        <td>7.2</td>
+                        <td>50%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div class="sb-slidebar sb-left sb-width-custom" data-sb-width="15%">-->
+        <!--&lt;!&ndash; Your left Slidebar content. &ndash;&gt;-->
+        <!--<nav>-->
+            <!--<ul class="sb-menu">-->
+                <!--<li><img width="118" height="40" alt="Slidebars" src="http://plugins.adchsm.me/slidebars/images/slidebars-logo-white@2x.png"></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/">Home</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/index.php#download">Download</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/usage.php">Usage</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/usage.php#api">API</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/compatibility.php">Compatibility</a></li>-->
+                <!--<li><a class="sb-toggle-submenu" onclick="$(this).addClass('sb-submenu-active');$(this.parentNode.children[1]).show();return false;" href="#">Help &amp; Issues <span class="sb-caret"></span></a>-->
+                    <!--<ul class="sb-submenu">-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues.php">Overview</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/fixed-position.php">Fixed Positions</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/modal.php">Modal.js</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/squashed-content.php">Squashed Navbar Content</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/contact.php">Contact</a></li>-->
+                <!--<li><a href="https://github.com/adchsm/Slidebars" class="github">Github</a></li>-->
+                <!--<li><span class="sb-open-right">About the Author</span></li>-->
+                <!--<li><small>Slidebars &copy; 2014 Adam Smith</small></li>-->
+            <!--</ul>-->
+        <!--</nav>-->
+    <!--</div>-->
+
+    <!--<div class="sb-slidebar sb-right sb-width-custom sb-style-overlay" data-sb-width="20%">-->
+        <!--&lt;!&ndash; Your right Slidebar content. &ndash;&gt;-->
+        <!--<nav>-->
+            <!--<ul class="sb-menu">-->
+                <!--<li><img width="118" height="40" alt="Slidebars" src="http://plugins.adchsm.me/slidebars/images/slidebars-logo-white@2x.png"></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/">Home</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/index.php#download">Download</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/usage.php">Usage</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/usage.php#api">API</a></li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/compatibility.php">Compatibility</a></li>-->
+                <!--<li><a class="sb-toggle-submenu" href="#">Help &amp; Issues <span class="sb-caret"></span></a>-->
+                    <!--<ul class="sb-submenu">-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues.php">Overview</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/fixed-position.php">Fixed Positions</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/modal.php">Modal.js</a></li>-->
+                        <!--<li><a href="http://plugins.adchsm.me/slidebars/issues/squashed-content.php">Squashed Navbar Content</a></li>-->
+                    <!--</ul>-->
+                <!--</li>-->
+                <!--<li><a href="http://plugins.adchsm.me/slidebars/contact.php">Contact</a></li>-->
+                <!--<li><a href="https://github.com/adchsm/Slidebars" class="github">Github</a></li>-->
+                <!--<li><span class="sb-open-right">About the Author</span></li>-->
+                <!--<li><small>Slidebars &copy; 2014 Adam Smith</small></li>-->
+            <!--</ul>-->
+        <!--</nav>-->
+    <!--</div>-->
+
+
+
+    <script>
+        $(document).ready(function() {
+            $('table.tableSorter').tableSort();
+
+            $(document.body).scroll(function(){
+                console.log($(document.body).scrollTop());
+                $("#menuDiv")
+                        .stop()
+                        .animate({"marginTop": ($(document.body).scrollTop()) + "px"}, "slow" );
+            });
+
+            $(".scrollbar").scroller();
+        });
+
+//        (function($) {
+//            $(document).ready(function() {
+
+//                $('table.tableSorter').tableSort();
+
+//                $(window).scroll(function(){
+//                    $("#menuDiv")
+//                            .stop()
+//                            .animate({"marginTop": ($(window).scrollTop() + 30) + "px"}, "slow" );
+//                });
+
+////                $.slidebars();
+//                $('.parent').click(function(){
+//                    $("nav.pushy").addClass("pushy-open").removeClass("pushy-left");
+//                    $(document.body).addClass("pushy-active");
+////                    $("nav.pushy").find("li.active1").removeClass("active1");
+//                    $(this).find("ul").toggleClass("slidedown slideup");
+//                    $('#container').addClass("container-push");
+////                    $(this).children('.child').css("display","block");
+////                }, function() {
+////                    $(this).children('.child').css("display","none");
+//                });
+////                $('.child').click(function(){
+//////                    alert("child is clicked.");
+////                    $("nav.pushy").removeClass("pushy-open").addClass("pushy-left");
+////                    $(document.body).removeClass("pushy-active");
+////                    $(this).toggleClass("active1");
+////                    $('#container').removeClass("container-push");
+////                });
+//            });
+//        }) (jQuery);
+    </script>
+</body>
+</html>                                		                                		
