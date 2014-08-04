@@ -67,11 +67,11 @@ table.tableSorter th div.sortArrow div.sortArrowDescending {
 }
 
 table.tableSorter th div.sortArrow div.sortArrowAscending {
-    background: url('../images/icon_down.png');
+    background: url('../img/icon_down.png');
 }
 
 table.tableSorter th div.sortArrow div.sortArrowDescending {
-    background: url('../images/icon_up.png') no-repeat;
+    background: url('../img/icon_up.png') no-repeat;
 }
 
 .tableSorter tr:nth-child(even) td {background: #CCC}
